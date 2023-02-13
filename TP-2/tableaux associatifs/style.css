@@ -1,0 +1,27 @@
+#table_ex1 td {
+    border: 1px solid black;
+    padding: 20px;
+}
+
+#table_ex1 tr {
+    border: 1px solid black;
+}
+
+#table_ex4 {
+    border: 1px solid black;
+}
+
+#table_ex4 td {
+    border: 1px solid black;
+    padding: 20px;
+    background-color: aqua;
+}
+
+#table_ex4 tr {
+    border: 1px solid black;
+}
+
+#table_ex5 td {
+    border: 1px solid black;
+    padding: 20px;
+}
