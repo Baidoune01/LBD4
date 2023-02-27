@@ -7,18 +7,23 @@
     <title>Student Information</title>
     <style>
         table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-            padding: 5px;
+            border: 2px dashed gray;
+            padding: 10px;
         }
     </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" integrity="sha512-q/JU+XSNJgc4oU6y3wq3s+1djrHmwLJQ1ov+ksAb8l+m9Yli+flbG57nJnNL+l+17Cz/pbE8evAV0pm9GM+pQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 <body>
-    <h1>Student Information</h1>
-    <form action="<?php echo $_SERVER["PHP_SELF"];?>" method="post" >
-    Enter a valid code of student :
-    <input type="text" name="code">
-    </form>
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Student Information</h1>
+        <form class="mb-3" action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
+            <div class="form-group">
+                <label for="cd">Enter a valid code of student :</label>
+                <input type="text" class="form-control" id="cd" name="cd">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     <?php 
     $modules = array(
         "Et1777611991981" => array(
@@ -54,11 +59,61 @@
             )
         )
     );
+    if (isset($_POST["cd"])){
 
-    // Loop through the array to create links for each student
-    foreach ($modules as $code => $student) {
-        echo "<a href='show_student_infos.php?code=$code'>{$student['Nom']} {$student['Prenom']}</a><br>";
+        if(!array_key_exists($_POST["cd"],$modules) && $_POST["cd"] != ""){
+            echo '<div class="alert alert-danger mt-3">Not a valid code, please try another code or go to the tp-2 where you can find the right codes.</div>';
+        }
+        else {
+            echo '<div class="alert alert-success mt-3">' . $_POST["cd"] . ' is the code that you have entered.</div>';
+
+        
+
+
+    function m_M($array, $m){
+        if ($m == 0){
+            $mmmmm = "m1";
+            $mN = $array["m1"];
+            foreach ($array as $kkkkkkkkkkkkk => $vvvvvvvvvv){
+                //////////
+                if( $vvvvvvvvvv < $mN){
+                    /////////////k//////
+                    /////////////f///
+                    $mmmmm = $kkkkkkkkkkkkk;
+                    $mN = $vvvvvvvvvv;
+                    ////////////f///
+                }
+            }
+            //////
+
+            ///
+            ///
+
+            return array($mmmmm,$mN);
+        }
+        if ($m == 1){
+            $MM = "";
+            $MN = 0;
+            foreach ($array as $kkkkkkkkkkkkk => $vvvvvvvvvv){
+                if ($vvvvvvvvvv > $MN){
+                    $MM = $kkkkkkkkkkkkk;
+                    $MN = $vvvvvvvvvv;
+                }
+            }
+        
+        return array($MM,$MN);
+        }
     }
+        $v = $modules[$_POST["cd"]];
+        echo "<br>";
+        echo "Student  ",$v["Nom"];
+        echo "<br>";
+        echo "the module with the highest grade: ",m_M($v["Notes"],1)[0]," With score : ",m_M($v["Notes"],1)[1] ;
+        echo "<br>";
+        echo "the module with the lowest grade: ",m_M($v["Notes"],0)[0]," With score : ",m_M($v["Notes"],0)[1] ;
+        echo "<br>";
+}
+        }
     ?>
 </body>
 </html>
